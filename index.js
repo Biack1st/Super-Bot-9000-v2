@@ -10,7 +10,6 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 client.on("messageCreate", (msg) => {
     for (let i = 0; i < cmdList.length; i++) {
         const cmdData = cmdList[i]
-
         if (msg.content.toLowerCase().substring(1, cmdData.cmd.length) == cmdData.cmd.toLowerCase()) {         
             cmdData.action(msg, client)
         }
