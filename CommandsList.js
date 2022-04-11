@@ -229,6 +229,14 @@ const list = [
         }
       },
       description: "Gets stats of the specified devforum user."
+    },
+    {
+        cmd: prefix + "stalk",
+        action: function(msg, client) {
+            const target = msg.content.split(" ")[1]              
+            console.log(target)
+        },
+        description: "stalks the specified user."
     }
 ]
 
