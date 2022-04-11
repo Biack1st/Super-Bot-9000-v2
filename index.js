@@ -8,7 +8,6 @@ require("dotenv").config();
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 client.on("messageCreate", (msg) => {
-    console.log("bruhh")
     for (let i = 0; i < cmdList.length; i++) {
         const cmdData = cmdList[i]
         if (msg.content.toLowerCase().substring(0, cmdData.cmd.length) == cmdData.cmd.toLowerCase()) {         
