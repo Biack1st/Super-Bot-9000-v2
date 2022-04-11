@@ -13,7 +13,6 @@ client.on("messageCreate", (msg) => {
         const cmdData = cmdList[i]
         if (msg.content.toLowerCase().substring(0, cmdData.cmd.length) == cmdData.cmd.toLowerCase()) {         
             cmdData.action(msg, client)
-            console.log("hi")
         }
     }
 })

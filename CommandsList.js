@@ -6,6 +6,8 @@ const discord = require("discord.js")
 
 const robotIcon = "https://i.imgur.com/ufhQdix.png"
 
+const stalkManager = require("./commands/stalkingManager")
+
 const list = [
    
     {
@@ -232,9 +234,12 @@ const list = [
     },
     {
         cmd: prefix + "stalk",
-        action: function(msg, client) {
+        action: async function(msg, client) {
             const target = msg.content.split(" ")[1]              
-            console.log(target)
+            
+            stalkManager.stalk(msg.author.id, target)
+
+            console.log(await stalkManager.getCurrentlyStalking(msg.author.id))
         },
         description: "stalks the specified user."
     }
