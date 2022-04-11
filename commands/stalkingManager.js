@@ -1,36 +1,28 @@
 const admin = require("firebase-admin")
-const serviceAccount = require("./firebase-data.json")
+const serviceAccount = require("./ServiceAccountKey.json")
 
 admin.initializeApp({
-    credential: admin.credential.applicationDefault()
+    credential: admin.credential.cert(serviceAccount)
 })
 
 const db = admin.firestore()
 
 const stalkManager = {
     stalk: async function(senderId, targetUser) {
-
-       
+        const currentlyStalking = await this.getCurrentlyStalking()
 
         const data = {
             userId: senderId,
             stalking: [targetUser]
         }
-
-        console.log(data)
-
-       const stalkingDoc = await db.collection("stalking")
-
-       stalkingDoc.doc('stalking').update(data)
-
-       console.log(await this.getCurrentlyStalking())
+        const stalkingDoc = await db.collection("stalking").doc('stalking')
+        stalkingDoc.set(data)
     },
 
     getCurrentlyStalking: async function(id) {
-        const stalkingDoc = await db.collection("stalking").doc('stalking')
+        const stalkingDoc = await db.collection("stalking").doc('stalking').get()
 
-        console.log(await stalkingDoc.get())
-        return "F"
+        return await stalkingDoc.data()
     }
 }
 
