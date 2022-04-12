@@ -7,6 +7,8 @@ require("dotenv").config();
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
+
+
 client.on("messageCreate", (msg) => {
     for (let i = 0; i < cmdList.length; i++) {
         const cmdData = cmdList[i]
@@ -17,6 +19,7 @@ client.on("messageCreate", (msg) => {
 })
 
 client.once('ready', () => {
+    client.user.setActivity('You sleep', {type: "WATCHING"})
 	console.log('Ready!');
 });
 
