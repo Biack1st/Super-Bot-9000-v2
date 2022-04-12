@@ -6,7 +6,7 @@ const discord = require("discord.js")
 
 const robotIcon = "https://i.imgur.com/ufhQdix.png"
 
-const stalkManager = require("./commands/stalkingManager")
+const coinsManager = require("./commands/coinsManager")
 
 const list = [
    
@@ -233,15 +233,23 @@ const list = [
       description: "Gets stats of the specified devforum user."
     },
     {
-        cmd: prefix + "stalk",
-        action: async function(msg, client) {
-            const target = msg.content.split(" ")[1]              
-            
-            stalkManager.stalk(msg.author.id, target)
+      cmd: prefix + "fortnitecard",
+      action: async function(msg) {
+          msg.reply("https://tenor.com/view/dollar-fortnite-card-gif-21399060")
 
-            console.log(await stalkManager.getCurrentlyStalking(msg.author.id))
-        },
-        description: "stalks the specified user."
+          await coinsManager.set(msg.author.id, 1)
+
+          console.log('set coins')
+      },
+      description: "19 dollar fortnite card"
+    },
+    {
+      cmd: prefix + "coins",
+      action: async function(msg) {
+        const coins = await coinsManager.get(msg.author.id)
+        msg.reply(`You have ${coins.coins} coins`)
+      },
+      description: "Tells you your coins."
     }
 ]
 
