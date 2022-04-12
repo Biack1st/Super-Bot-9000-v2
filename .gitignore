@@ -2,3 +2,4 @@
 node_modules
 commands/firebase-data.json
 commands/ServiceAccountKey.json
+API/ServiceAccountKey.json
